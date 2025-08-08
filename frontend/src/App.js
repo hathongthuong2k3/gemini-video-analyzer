@@ -57,14 +57,29 @@ function App() {
 
   const formatResult = (resultText) => {
     try {
-      // Thử parse JSON nếu có
-      const jsonMatch = resultText.match(/```json\n([\s\S]*?)\n```/);
-      if (jsonMatch) {
-        const jsonData = JSON.parse(jsonMatch[1]);
-        return jsonData;
+      // Thử parse JSON trực tiếp trước
+      if (typeof resultText === 'string') {
+        // Kiểm tra nếu là JSON string
+        if (resultText.trim().startsWith('[') || resultText.trim().startsWith('{')) {
+          return JSON.parse(resultText);
+        }
+        
+        // Thử parse JSON nếu có trong markdown code blocks
+        const jsonMatch = resultText.match(/```json\n([\s\S]*?)\n```/);
+        if (jsonMatch) {
+          const jsonData = JSON.parse(jsonMatch[1]);
+          return jsonData;
+        }
       }
+      
+      // Nếu resultText đã là object/array
+      if (Array.isArray(resultText) || typeof resultText === 'object') {
+        return resultText;
+      }
+      
       return resultText;
     } catch (e) {
+      console.error('Error parsing result:', e);
       return resultText;
     }
   };
