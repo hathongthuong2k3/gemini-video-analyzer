@@ -13,7 +13,7 @@ CORS(app, origins=[
     'https://your-frontend-domain.vercel.app'  # Thay bằng domain thực tế
 ])
 
-GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
+GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent"
 
 @app.route('/analyze', methods=['POST'])
 def analyze_video():
