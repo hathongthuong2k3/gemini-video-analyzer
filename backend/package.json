@@ -1,0 +1,18 @@
+{
+  "name": "gemini-video-analyzer-backend",
+  "version": "1.0.0",
+  "description": "NodeJS proxy server for Gemini video analyzer",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
+}
